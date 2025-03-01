@@ -1,12 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";  // Import CSS for styling
+import "react-toastify/dist/ReactToastify.css";  
 
 const StringGenerator = () => {
   const [randomString, setRandomString] = useState("");
   const [darkMode, setDarkMode] = useState(false);
 
-  // Function to generate a random string
   const generateRandomString = useCallback(() => {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let result = "";
@@ -16,17 +15,15 @@ const StringGenerator = () => {
     setRandomString(result);
   }, []);
 
-  // Function to clear the generated string
   const clearString = () => {
     setRandomString("");
   };
 
-  // Function to copy text and show toast
   const copyToClipboard = () => {
     navigator.clipboard.writeText(randomString);
     toast.success("Copied!", {
       position: "top-right",
-      autoClose: 1500, // Close after 1.5 seconds
+      autoClose: 1500, 
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
@@ -34,7 +31,6 @@ const StringGenerator = () => {
     });
   };
 
-  // Dark mode toggle
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
@@ -48,7 +44,6 @@ const StringGenerator = () => {
       <div className={`p-6 shadow-lg rounded-xl w-96 transition-all duration-500 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}>
         <h2 className="text-xl font-bold text-center mb-4">Random String Generator</h2>
 
-        {/* Input Field - Fixed Text Visibility */}
         <div className={`flex items-center border rounded-lg overflow-hidden p-2 ${darkMode ? "bg-gray-700 text-white" : "bg-gray-100 text-gray-900"}`}>
           <input 
             type="text" 
@@ -61,7 +56,6 @@ const StringGenerator = () => {
           </button>
         </div>
 
-        {/* Buttons Section */}
         <div className="flex justify-between mt-4">
           <button 
             onClick={generateRandomString} 
@@ -77,7 +71,6 @@ const StringGenerator = () => {
           </button>
         </div>
 
-        {/* Dark Mode Toggle */}
         <button 
           onClick={toggleDarkMode} 
           className="mt-4 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-300"
@@ -86,7 +79,6 @@ const StringGenerator = () => {
         </button>
       </div>
 
-      {/* Toast Notification */}
       <ToastContainer />
     </div>
   );
